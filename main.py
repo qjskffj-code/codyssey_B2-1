@@ -571,6 +571,25 @@ def delete_prompt():
         else:
             print("y 또는 n을 입력해주세요.")
 
+def show_top_prompts():
+    print("\n=== 조회수 TOP ===")
+
+    if not prompts:
+        print("등록된 프롬프트가 없습니다.")
+        return
+
+    sorted_prompts = sorted(
+        prompts,
+        key=lambda prompt: prompt["views"],
+        reverse=True
+    )
+
+    for index, prompt in enumerate(sorted_prompts, start=1):
+        print(
+            f"{index}. {prompt['title']} "
+            f"- 조회수 {prompt['views']}회"
+        )
+
 while True:
     show_menu()
 
@@ -607,7 +626,10 @@ while True:
     elif choice == "9":
         delete_prompt()
 
-    elif choice in ["10", "11"]:
+    elif choice == "10":
+        show_top_prompts()
+
+    elif choice == "11":
         print("아직 구현되지 않은 기능입니다.")
 
     else:
