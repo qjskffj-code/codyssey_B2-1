@@ -364,6 +364,45 @@ def search_prompt():
 
     print(f"\n{len(results)}개의 프롬프트를 찾았습니다.")
 
+def show_detail():
+    print("\n=== 프롬프트 상세 보기 ===")
+
+    if not prompts:
+        print("등록된 프롬프트가 없습니다.")
+        return
+
+    show_list()
+
+    while True:
+        choice = input("\n프롬프트 번호 입력 (0: 취소): ").strip()
+
+        if choice == "0":
+            print("상세보기를 취소했습니다.")
+            return
+
+        if choice.isdigit():
+            number = int(choice)
+
+            if 1 <= number <= len(prompts):
+                prompt = prompts[number - 1]
+                break
+
+        print("올바른 프롬프트 번호를 입력해주세요.")
+
+    prompt["views"] += 1
+
+    favorite_mark = "⭐" if prompt["favorite"] else "없음"
+
+    print("\n────────────────────────────")
+    print(f"제목: {prompt['title']}")
+    print(f"카테고리: {prompt['category']}")
+    print(f"즐겨찾기: {favorite_mark}")
+    print(f"조회수: {prompt['views']}")
+    print("────────────────────────────")
+    print("내용:")
+    print(prompt["content"])
+    print("────────────────────────────")
+
 while True:
     show_menu()
 
@@ -385,7 +424,10 @@ while True:
     elif choice == "4":
         search_prompt()
 
-    elif choice in ["5", "6", "7", "8", "9", "10", "11"]:
+    elif choice == "5":
+        show_detail()
+
+    elif choice in ["6", "7", "8", "9", "10", "11"]:
         print("아직 구현되지 않은 기능입니다.")
 
     else:
