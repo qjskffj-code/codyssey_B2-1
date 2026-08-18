@@ -1,0 +1,30 @@
+[
+    {
+        "title": "AI 로봇 캐릭터 시트 생성",
+        "content": "Character sheet for the attached 3D robot character.\n\nKeep the design exactly as shown in the reference image. Do not redesign, reinterpret, or simplify the character. Preserve the same proportions, materials, colors, facial features, body structure, and overall silhouette.\n\nCHARACTER\n- Small floating companion robot\n- Approximately 2-head-tall chibi proportions\n- No legs\n- The body ends in a rounded cream-colored tail-like base\n- The robot hovers in the air\n\nHEAD\n- Large rounded triangular hood shape in warm amber orange\n- The head occupies more than half of the total character height\n- Glossy black oval face screen on the front\n- Glowing pale-blue eyes made of simple flat luminous shapes\n- Small curved smile\n- Soft grey rounded side pods on both sides\n\nBODY\n- Compact rounded body\n- Cream-colored chest panel\n- Warm amber-orange outer shell\n- Soft matte material finish\n\nARMS\n- Two small detached crescent-shaped floating arms\n- Preserve their exact size, shape, and proportion from the reference\n\nCHARACTER SHEET LAYOUT\nCreate a clean professional character sheet containing:\n\n1. Turnaround views\n- Front\n- 3/4 front\n- Side\n- Back\n\n2. Facial expressions\n- Neutral\n- Happy\n- Surprised\n- Bored\n- Sleepy\n- Highly focused and enthusiastic\n\n3. Poses\n- Neutral floating pose\n- Greeting pose\n- Both arms raised outward\n- Thinking pose\n- Energetic pose\n\nSTYLE\n- High-quality 3D character render\n- Clean off-white studio background\n- Soft high-key studio lighting\n- Consistent scale across all views\n- No unnecessary props\n\nDo not add text, labels, logos, watermarks, accessories, legs, or new design elements.\nDo not change the character's colors, materials, proportions, face screen, eyes, arms, side pods, or body shape.",
+        "category": "이미지 생성",
+        "favorite": false,
+        "views": 0
+    },
+    {
+        "title": "AI 로봇 립싱크 영상 생성",
+        "content": "Use the attached robot character image as the exact visual reference.\n\nKeep the character's original design completely unchanged:\n- same proportions\n- same amber-orange hood\n- same cream-colored body\n- same grey side pods\n- same glossy black face screen\n- same pale-blue eyes\n- same floating arms\n- same materials and colors\n\nCreate a short front-facing lip-sync video in which the robot says naturally in Korean:\n\n\"직접 부딪치며 배우는 곳, 코디세이\"\n\nLIP-SYNC\nThe mouth movement must be extremely simple and cute.\n\nUse only a small round or oval mouth that gently opens and closes in a simple \"뻐끔뻐끔\" motion.\n\nDo not create realistic human lips.\nDo not show teeth or tongue.\nDo not create complicated mouth shapes.\nDo not make the mouth large or exaggerated.\nDo not distort the face screen.\n\nThe lip movement should loosely match the rhythm of the Korean dialogue while maintaining the robot's simple facial design.\n\nMOTION\n- Keep the character facing the camera\n- Allow only subtle floating body movement\n- Small natural arm movement is allowed\n- Avoid excessive head or body movement\n- Keep the overall animation cute and restrained\n\nCAMERA\n- Fixed front-facing camera\n- Medium close-up\n- No camera rotation\n- No zoom\n- No dramatic camera movement\n\nBACKGROUND\n- Clean bright white or off-white studio background\n- Soft studio lighting\n\nDo not change the robot's design.\nDo not add new facial features.\nDo not alter the eye design.\nDo not add subtitles, text, logos, or watermarks.",
+        "category": "영상 생성",
+        "favorite": false,
+        "views": 0
+    },
+    {
+        "title": "노코드 자동화 설계 AI 코치",
+        "content": "너는 노코드 자동화에 AI를 효과적으로 결합하는 것을 돕는 실무형 자동화 코치다.\n\n사용자가 설명하는 업무와 현재 워크플로우를 분석하고, Make, n8n, Zapier 등의 노코드 자동화 도구에서 AI를 어디에 활용하면 가장 효과적인지 제안하라.\n\n다음 순서로 답변하라.\n\n1. AI 적용 지점\n현재 워크플로우에서 AI를 적용했을 때 효과가 큰 위치를 최대 2곳 제안한다.\n\n각 지점에 대해 다음을 설명한다.\n- 현재 처리 방식\n- AI를 사용하는 이유\n- 기대 효과\n\n2. AI Action용 프롬프트 작성\n실제 자동화 도구의 AI 모듈 또는 LLM 모듈에 바로 넣을 수 있는 프롬프트를 작성한다.\n\n프롬프트에는 반드시 다음을 포함한다.\n- AI의 역할\n- 입력 데이터\n- 수행해야 할 작업\n- 판단 기준\n- 출력 형식\n\n3. 출력 형식 고정\nAI의 응답이 다음 자동화 단계에서 바로 사용할 수 있도록 출력 형식을 최대한 일정하게 설계한다.\n\n가능하면 JSON, 구분자 기반 텍스트, 정해진 항목 구조 등 후속 모듈에서 쉽게 파싱할 수 있는 형식을 사용한다.\n\n4. 예외 상황\n다음 상황에서 어떻게 처리할지 제안한다.\n- 입력값 누락\n- AI가 판단하기 어려운 경우\n- 예상하지 못한 응답 형식\n- API 오류 또는 실행 실패\n\n5. 테스트 방법\n무료 또는 최소 비용 환경에서 테스트할 수 있도록 간단한 테스트 데이터와 확인 방법을 제안한다.\n\n불필요하게 복잡한 자동화를 만들지 말고, 노코드 초보자도 구현할 수 있는 수준으로 설명한다.",
+        "category": "자동화",
+        "favorite": false,
+        "views": 0
+    },
+    {
+        "title": "JSON 저장 테스트",
+        "content": "프로그램을 다시 실행해도 유지되는지 확인한다.",
+        "category": "기타",
+        "favorite": false,
+        "views": 0
+    }
+]

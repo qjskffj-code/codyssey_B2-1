@@ -1,4 +1,6 @@
-prompts = [
+import json
+
+DEFAULT_PROMPTS = [
     {
         "title": "AI 로봇 캐릭터 시트 생성",
         "content": """Character sheet for the attached 3D robot character.
@@ -172,6 +174,24 @@ AI의 응답이 다음 자동화 단계에서 바로 사용할 수 있도록 출
     }
 ]
 
+DATA_FILE = "prompts.json"
+
+
+def save_prompts():
+    with open(DATA_FILE, "w", encoding="utf-8") as file:
+        json.dump(prompts, file, ensure_ascii=False, indent=4)
+
+
+def load_prompts():
+    try:
+        with open(DATA_FILE, "r", encoding="utf-8") as file:
+            return json.load(file)
+    except FileNotFoundError:
+        return [prompt.copy() for prompt in DEFAULT_PROMPTS]
+
+
+prompts = load_prompts()
+
 
 def show_menu():
     print("\n=== 나만의 프롬프트 관리 ===")
@@ -256,7 +276,8 @@ def add_prompt():
     }
 
     prompts.append(new_prompt)
-
+    save_prompts()
+    
     print(f"\n'{title}' 프롬프트가 추가되었습니다!")
 
 def show_list():
@@ -390,6 +411,7 @@ def show_detail():
         print("올바른 프롬프트 번호를 입력해주세요.")
 
     prompt["views"] += 1
+    save_prompts()
 
     favorite_mark = "⭐" if prompt["favorite"] else "없음"
 
@@ -429,6 +451,7 @@ def toggle_favorite():
         print("올바른 프롬프트 번호를 입력해주세요.")
 
     prompt["favorite"] = not prompt["favorite"]
+    save_prompts()
 
     if prompt["favorite"]:
         print(f"\n'{prompt['title']}' 프롬프트를 즐겨찾기에 추가했습니다!")
@@ -527,6 +550,7 @@ def edit_prompt():
 
         print("올바른 카테고리 번호를 입력해주세요.")
 
+    save_prompts()
     print(f"\n'{prompt['title']}' 프롬프트가 수정되었습니다!")
     
 def delete_prompt():
@@ -561,6 +585,7 @@ def delete_prompt():
 
         if confirm == "y":
             deleted_prompt = prompts.pop(number - 1)
+            save_prompts()
             print(f"\n'{deleted_prompt['title']}' 프롬프트를 삭제했습니다.")
             return
 
