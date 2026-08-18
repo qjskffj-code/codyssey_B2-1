@@ -189,16 +189,111 @@ def show_menu():
     print("0. 종료")
 
 
+def add_prompt():
+    print("\n=== 프롬프트 추가 ===")
+
+    while True:
+        title = input("제목 (0: 취소): ").strip()
+
+        if title == "0":
+            print("프롬프트 추가를 취소했습니다.")
+            return
+
+        if title:
+            break
+
+        print("제목은 비워둘 수 없습니다.")
+
+    while True:
+        content = input("내용 (0: 취소): ").strip()
+
+        if content == "0":
+            print("프롬프트 추가를 취소했습니다.")
+            return
+
+        if content:
+            break
+
+        print("내용은 비워둘 수 없습니다.")
+
+    categories = [
+        "텍스트 생성",
+        "이미지 생성",
+        "영상 생성",
+        "페르소나",
+        "자동화",
+        "기타"
+    ]
+
+    print("\n카테고리 선택:")
+    for index, category in enumerate(categories, start=1):
+        print(f"{index}) {category}")
+
+    print("0) 취소")
+
+    while True:
+        category_choice = input("선택: ").strip()
+
+        if category_choice == "0":
+            print("프롬프트 추가를 취소했습니다.")
+            return
+
+        if category_choice.isdigit():
+            number = int(category_choice)
+
+            if 1 <= number <= len(categories):
+                category = categories[number - 1]
+                break
+
+        print("올바른 카테고리 번호를 입력해주세요.")
+
+    new_prompt = {
+        "title": title,
+        "content": content,
+        "category": category,
+        "favorite": False,
+        "views": 0
+    }
+
+    prompts.append(new_prompt)
+
+    print(f"\n'{title}' 프롬프트가 추가되었습니다!")
+
+
+def show_list():
+    print("\n=== 프롬프트 목록 ===")
+
+    if not prompts:
+        print("등록된 프롬프트가 없습니다.")
+        return
+
+    for index, prompt in enumerate(prompts, start=1):
+        favorite_mark = " ⭐" if prompt["favorite"] else ""
+
+        print(
+            f"{index}. [{prompt['category']}] "
+            f"{prompt['title']}{favorite_mark}"
+        )
+
+    print(f"\n총 {len(prompts)}개의 프롬프트")
+
+
 while True:
     show_menu()
 
-    choice = input("선택: ")
+    choice = input("선택: ").strip()
 
     if choice == "0":
         print("프로그램을 종료합니다.")
         break
 
-    elif choice in ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"]:
+    elif choice == "1":
+        add_prompt()
+
+    elif choice == "2":
+        show_list()
+
+    elif choice in ["3", "4", "5", "6", "7", "8", "9", "10", "11"]:
         print("아직 구현되지 않은 기능입니다.")
 
     else:
