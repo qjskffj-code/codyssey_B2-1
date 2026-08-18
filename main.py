@@ -1,4 +1,5 @@
 import json
+import os
 
 DEFAULT_PROMPTS = [
     {
@@ -615,6 +616,57 @@ def show_top_prompts():
             f"- 조회수 {prompt['views']}회"
         )
 
+def export_markdown():
+    print("\n=== Markdown 내보내기 ===")
+
+    if not prompts:
+        print("내보낼 프롬프트가 없습니다.")
+        return
+
+    export_dir = "exports"
+    os.makedirs(export_dir, exist_ok=True)
+
+    categories = [
+        "텍스트 생성",
+        "이미지 생성",
+        "영상 생성",
+        "페르소나",
+        "자동화",
+        "기타"
+    ]
+
+    exported_count = 0
+
+    for category in categories:
+        category_prompts = [
+            prompt for prompt in prompts
+            if prompt["category"] == category
+        ]
+
+        if not category_prompts:
+            continue
+
+        file_name = category.replace(" ", "_") + ".md"
+        file_path = os.path.join(export_dir, file_name)
+
+        with open(file_path, "w", encoding="utf-8") as file:
+            file.write(f"# {category} 프롬프트\n\n")
+
+            for prompt in category_prompts:
+                favorite_mark = "⭐" if prompt["favorite"] else "없음"
+
+                file.write(f"## {prompt['title']}\n\n")
+                file.write(f"- 즐겨찾기: {favorite_mark}\n")
+                file.write(f"- 조회수: {prompt['views']}회\n\n")
+                file.write("### 프롬프트\n\n")
+                file.write(prompt["content"])
+                file.write("\n\n---\n\n")
+
+        exported_count += 1
+
+    print(f"{exported_count}개의 Markdown 파일을 내보냈습니다.")
+    print(f"저장 위치: {export_dir}")
+
 while True:
     show_menu()
 
@@ -655,7 +707,7 @@ while True:
         show_top_prompts()
 
     elif choice == "11":
-        print("아직 구현되지 않은 기능입니다.")
+        export_markdown()
 
     else:
         print("올바른 메뉴 번호를 입력해주세요.")
