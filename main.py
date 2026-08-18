@@ -528,6 +528,48 @@ def edit_prompt():
         print("올바른 카테고리 번호를 입력해주세요.")
 
     print(f"\n'{prompt['title']}' 프롬프트가 수정되었습니다!")
+    
+def delete_prompt():
+    print("\n=== 프롬프트 삭제 ===")
+
+    if not prompts:
+        print("등록된 프롬프트가 없습니다.")
+        return
+
+    show_list()
+
+    while True:
+        choice = input("\n삭제할 프롬프트 번호 입력 (0: 취소): ").strip()
+
+        if choice == "0":
+            print("프롬프트 삭제를 취소했습니다.")
+            return
+
+        if choice.isdigit():
+            number = int(choice)
+
+            if 1 <= number <= len(prompts):
+                prompt = prompts[number - 1]
+                break
+
+        print("올바른 프롬프트 번호를 입력해주세요.")
+
+    print(f"\n삭제할 프롬프트: {prompt['title']}")
+
+    while True:
+        confirm = input("정말 삭제하시겠습니까? (y/n): ").strip().lower()
+
+        if confirm == "y":
+            deleted_prompt = prompts.pop(number - 1)
+            print(f"\n'{deleted_prompt['title']}' 프롬프트를 삭제했습니다.")
+            return
+
+        elif confirm == "n":
+            print("프롬프트 삭제를 취소했습니다.")
+            return
+
+        else:
+            print("y 또는 n을 입력해주세요.")
 
 while True:
     show_menu()
@@ -562,7 +604,10 @@ while True:
     elif choice == "8":
         edit_prompt()
 
-    elif choice in ["9", "10", "11"]:
+    elif choice == "9":
+        delete_prompt()
+
+    elif choice in ["10", "11"]:
         print("아직 구현되지 않은 기능입니다.")
 
     else:
