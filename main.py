@@ -454,6 +454,81 @@ def show_favorites():
 
     print(f"\n총 {len(favorite_prompts)}개의 즐겨찾기")
 
+def edit_prompt():
+    print("\n=== 프롬프트 수정 ===")
+
+    if not prompts:
+        print("등록된 프롬프트가 없습니다.")
+        return
+
+    show_list()
+
+    while True:
+        choice = input("\n수정할 프롬프트 번호 입력 (0: 취소): ").strip()
+
+        if choice == "0":
+            print("프롬프트 수정을 취소했습니다.")
+            return
+
+        if choice.isdigit():
+            number = int(choice)
+
+            if 1 <= number <= len(prompts):
+                prompt = prompts[number - 1]
+                break
+
+        print("올바른 프롬프트 번호를 입력해주세요.")
+
+    print("\n현재 정보")
+    print(f"제목: {prompt['title']}")
+    print(f"카테고리: {prompt['category']}")
+    print(f"내용: {prompt['content']}")
+
+    print("\n새 값을 입력하세요.")
+    print("변경하지 않으려면 그냥 Enter를 누르세요.")
+
+    new_title = input("새 제목: ").strip()
+
+    if new_title:
+        prompt["title"] = new_title
+
+    new_content = input("새 내용: ").strip()
+
+    if new_content:
+        prompt["content"] = new_content
+
+    categories = [
+        "텍스트 생성",
+        "이미지 생성",
+        "영상 생성",
+        "페르소나",
+        "자동화",
+        "기타"
+    ]
+
+    print("\n카테고리 변경")
+    print("0) 변경하지 않음")
+
+    for index, category in enumerate(categories, start=1):
+        print(f"{index}) {category}")
+
+    while True:
+        category_choice = input("선택: ").strip()
+
+        if category_choice == "0" or category_choice == "":
+            break
+
+        if category_choice.isdigit():
+            category_number = int(category_choice)
+
+            if 1 <= category_number <= len(categories):
+                prompt["category"] = categories[category_number - 1]
+                break
+
+        print("올바른 카테고리 번호를 입력해주세요.")
+
+    print(f"\n'{prompt['title']}' 프롬프트가 수정되었습니다!")
+
 while True:
     show_menu()
 
@@ -484,7 +559,10 @@ while True:
     elif choice == "7":
         show_favorites()
 
-    elif choice in ["8", "9", "10", "11"]:
+    elif choice == "8":
+        edit_prompt()
+
+    elif choice in ["9", "10", "11"]:
         print("아직 구현되지 않은 기능입니다.")
 
     else:
