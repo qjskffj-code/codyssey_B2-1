@@ -1,6 +1,6 @@
 # Python Prompt Manager
 
-> **Codyssey B2-1 · Python & Git 기초**  
+> **Codyssey A1-1 · Python & Git 기초**  
 > Python의 기본 문법과 Git 버전 관리를 학습하며, 흩어진 AI 프롬프트를 추가·분류·검색·즐겨찾기하고 JSON과 Markdown으로 관리할 수 있는 콘솔 기반 프롬프트 관리 프로그램을 구현했습니다.
 
 <p align="center">
@@ -23,7 +23,7 @@
 | 보너스 2 | 프롬프트 수정·삭제, 조회수 기록, 조회수 TOP 정렬 |
 | 데이터 구조 | Python `list` + `dict`, JSON |
 | 버전 관리 | Git 기능 단위 커밋, 별도 브랜치 작업 및 병합 |
-| 저장소 | [GitHub Repository](https://github.com/qjskffj-code/codyssey_B2-1) |
+| 저장소 | [GitHub Repository](https://github.com/qjskffj-code/codyssey_A1-1) |
 
 ### 바로가기
 
@@ -123,7 +123,7 @@ git version 2.38.1.windows.1
 ```
 
 <p align="center">
-  <img src="assets/images/코디세이_B2-1_실행화면_Python및Git버전확인.png" alt="Python 3.11.15와 3.14.5 및 Git 2.38.1 버전 확인" width="850">
+  <img src="assets/images/코디세이_A1-1_실행화면_Python및Git버전확인.png" alt="Python 3.11.15와 3.14.5 및 Git 2.38.1 버전 확인" width="850">
 </p>
 
 > Windows에 Python이 여러 버전 설치되어 있다면 VS Code의 `Python: Select Interpreter`에서 Python 3.10 이상을 선택한 뒤 버전을 다시 확인합니다.
@@ -441,21 +441,21 @@ Character sheet for the attached 3D robot character.
 ### Hello 실행
 
 <p align="center">
-  <img src="assets/images/코디세이_B2-1_실행화면_Hello출력.png" alt="Python Hello 실행 결과" width="850">
+  <img src="assets/images/코디세이_A1-1_실행화면_Hello출력.png" alt="Python Hello 실행 결과" width="850">
 </p>
 
 ### 프로젝트 기본 파일 작성
 
 <p align="center">
-  <img src="assets/images/코디세이_B2-1_실행화면_mainpy작성및Hello출력.png" alt="main.py 작성 및 Hello 실행" width="850">
+  <img src="assets/images/코디세이_A1-1_실행화면_mainpy작성및Hello출력.png" alt="main.py 작성 및 Hello 실행" width="850">
 </p>
 
 <p align="center">
-  <img src="assets/images/코디세이_B2-1_실행화면_README작성.png" alt="README 작성" width="850">
+  <img src="assets/images/코디세이_A1-1_실행화면_README작성.png" alt="README 작성" width="850">
 </p>
 
 <p align="center">
-  <img src="assets/images/코디세이_B2-1_실행화면_gitignore설정.png" alt="gitignore 설정" width="850">
+  <img src="assets/images/코디세이_A1-1_실행화면_gitignore설정.png" alt="gitignore 설정" width="850">
 </p>
 
 ## 기능별 실행 화면
@@ -463,11 +463,11 @@ Character sheet for the attached 3D robot character.
 ### 01. 프롬프트 추가
 
 <p align="center">
-  <img src="assets/images/코디세이_B2-1_실행화면_01_프롬프트추가_1.png" alt="프롬프트 추가 화면 1" width="850">
+  <img src="assets/images/코디세이_A1-1_실행화면_01_프롬프트추가_1.png" alt="프롬프트 추가 화면 1" width="850">
 </p>
 
 <p align="center">
-  <img src="assets/images/코디세이_B2-1_실행화면_01_프롬프트추가_2.png" alt="프롬프트 추가 화면 2" width="850">
+  <img src="assets/images/코디세이_A1-1_실행화면_01_프롬프트추가_2.png" alt="프롬프트 추가 화면 2" width="850">
 </p>
 
 > 02. 프롬프트 목록은 프롬프트 추가 후 목록 반영 화면인 `01_프롬프트추가_2`에서 함께 확인할 수 있습니다.
@@ -475,69 +475,69 @@ Character sheet for the attached 3D robot character.
 ### 03. 카테고리별 조회
 
 <p align="center">
-  <img src="assets/images/코디세이_B2-1_실행화면_03_카테고리조회.png" alt="카테고리별 프롬프트 조회" width="850">
+  <img src="assets/images/코디세이_A1-1_실행화면_03_카테고리조회.png" alt="카테고리별 프롬프트 조회" width="850">
 </p>
 
 ### 04. 프롬프트 검색
 
 <p align="center">
-  <img src="assets/images/코디세이_B2-1_실행화면_04_프롬프트검색.png" alt="프롬프트 검색" width="850">
+  <img src="assets/images/코디세이_A1-1_실행화면_04_프롬프트검색.png" alt="프롬프트 검색" width="850">
 </p>
 
 ### 05. 상세보기
 
 <p align="center">
-  <img src="assets/images/코디세이_B2-1_실행화면_05_상세보기_1.png" alt="프롬프트 상세보기 화면 1" width="850">
+  <img src="assets/images/코디세이_A1-1_실행화면_05_상세보기_1.png" alt="프롬프트 상세보기 화면 1" width="850">
 </p>
 
 <p align="center">
-  <img src="assets/images/코디세이_B2-1_실행화면_05_상세보기_2.png" alt="프롬프트 상세보기 화면 2" width="850">
+  <img src="assets/images/코디세이_A1-1_실행화면_05_상세보기_2.png" alt="프롬프트 상세보기 화면 2" width="850">
 </p>
 
 ### 06–07. 즐겨찾기 관리 및 목록
 
 <p align="center">
-  <img src="assets/images/코디세이_B2-1_실행화면_06_즐겨찾기관리.png" alt="즐겨찾기 관리" width="850">
+  <img src="assets/images/코디세이_A1-1_실행화면_06_즐겨찾기관리.png" alt="즐겨찾기 관리" width="850">
 </p>
 
 <p align="center">
-  <img src="assets/images/코디세이_B2-1_실행화면_07_즐겨찾기목록.png" alt="즐겨찾기 목록" width="850">
+  <img src="assets/images/코디세이_A1-1_실행화면_07_즐겨찾기목록.png" alt="즐겨찾기 목록" width="850">
 </p>
 
 ### 08. 프롬프트 수정
 
 <p align="center">
-  <img src="assets/images/코디세이_B2-1_실행화면_08_프롬프트수정_1.png" alt="프롬프트 수정 화면 1" width="850">
+  <img src="assets/images/코디세이_A1-1_실행화면_08_프롬프트수정_1.png" alt="프롬프트 수정 화면 1" width="850">
 </p>
 
 <p align="center">
-  <img src="assets/images/코디세이_B2-1_실행화면_08_프롬프트수정_2.png" alt="프롬프트 수정 화면 2" width="850">
+  <img src="assets/images/코디세이_A1-1_실행화면_08_프롬프트수정_2.png" alt="프롬프트 수정 화면 2" width="850">
 </p>
 
 ### 09. 프롬프트 삭제
 
 <p align="center">
-  <img src="assets/images/코디세이_B2-1_실행화면_09_프롬프트삭제.png" alt="프롬프트 삭제" width="850">
+  <img src="assets/images/코디세이_A1-1_실행화면_09_프롬프트삭제.png" alt="프롬프트 삭제" width="850">
 </p>
 
 ### 10. 조회수 TOP
 
 <p align="center">
-  <img src="assets/images/코디세이_B2-1_실행화면_10_조회수TOP.png" alt="조회수 TOP" width="850">
+  <img src="assets/images/코디세이_A1-1_실행화면_10_조회수TOP.png" alt="조회수 TOP" width="850">
 </p>
 
 ### 11. Markdown 내보내기
 
 <p align="center">
-  <img src="assets/images/코디세이_B2-1_실행화면_11_Markdown내보내기_1.png" alt="Markdown 내보내기 화면 1" width="850">
+  <img src="assets/images/코디세이_A1-1_실행화면_11_Markdown내보내기_1.png" alt="Markdown 내보내기 화면 1" width="850">
 </p>
 
 <p align="center">
-  <img src="assets/images/코디세이_B2-1_실행화면_11_Markdown내보내기_2.png" alt="Markdown 내보내기 화면 2" width="850">
+  <img src="assets/images/코디세이_A1-1_실행화면_11_Markdown내보내기_2.png" alt="Markdown 내보내기 화면 2" width="850">
 </p>
 
 <p align="center">
-  <img src="assets/images/코디세이_B2-1_실행화면_11_Markdown내보내기_3.png" alt="Markdown 내보내기 화면 3" width="850">
+  <img src="assets/images/코디세이_A1-1_실행화면_11_Markdown내보내기_3.png" alt="Markdown 내보내기 화면 3" width="850">
 </p>
 
 ---
@@ -689,21 +689,21 @@ chore: 설정 및 기타 작업
 ```
 
 <p align="center">
-  <img src="assets/images/코디세이_B2-1_실행화면_gitlog_클로즈업.png" alt="Git branch and merge graph close-up" width="850">
+  <img src="assets/images/코디세이_A1-1_실행화면_gitlog_클로즈업.png" alt="Git branch and merge graph close-up" width="850">
 </p>
 
 ### Git 실행 증빙
 
 <p align="center">
-  <img src="assets/images/코디세이_B2-1_실행화면_gitclone및gitlog.png" alt="git clone 및 git log 실행 결과" width="850">
+  <img src="assets/images/코디세이_A1-1_실행화면_gitclone및gitlog.png" alt="git clone 및 git log 실행 결과" width="850">
 </p>
 
 <p align="center">
-  <img src="assets/images/코디세이_B2-1_실행화면_gitcommit_GitHub확인.png" alt="GitHub 초기 커밋 확인" width="850">
+  <img src="assets/images/코디세이_A1-1_실행화면_gitcommit_GitHub확인.png" alt="GitHub 초기 커밋 확인" width="850">
 </p>
 
 <p align="center">
-  <img src="assets/images/코디세이_B2-1_실행화면_gitlog_전체화면.png" alt="Git log 전체 화면" width="850">
+  <img src="assets/images/코디세이_A1-1_실행화면_gitlog_전체화면.png" alt="Git log 전체 화면" width="850">
 </p>
 
 ---
@@ -711,7 +711,7 @@ chore: 설정 및 기타 작업
 # Project Structure
 
 ```text
-B2-1/
+A1-1/
 ├─ main.py
 ├─ prompts.json
 ├─ README.md
@@ -722,30 +722,30 @@ B2-1/
 │  └─ 자동화.md
 └─ assets/
    └─ images/
-      ├─ 코디세이_B2-1_실행화면_Hello출력.png
-      ├─ 코디세이_B2-1_실행화면_mainpy작성및Hello출력.png
-      ├─ 코디세이_B2-1_실행화면_README작성.png
-      ├─ 코디세이_B2-1_실행화면_gitignore설정.png
-      ├─ 코디세이_B2-1_실행화면_Python및Git버전확인.png
-      ├─ 코디세이_B2-1_실행화면_01_프롬프트추가_1.png
-      ├─ 코디세이_B2-1_실행화면_01_프롬프트추가_2.png
-      ├─ 코디세이_B2-1_실행화면_03_카테고리조회.png
-      ├─ 코디세이_B2-1_실행화면_04_프롬프트검색.png
-      ├─ 코디세이_B2-1_실행화면_05_상세보기_1.png
-      ├─ 코디세이_B2-1_실행화면_05_상세보기_2.png
-      ├─ 코디세이_B2-1_실행화면_06_즐겨찾기관리.png
-      ├─ 코디세이_B2-1_실행화면_07_즐겨찾기목록.png
-      ├─ 코디세이_B2-1_실행화면_08_프롬프트수정_1.png
-      ├─ 코디세이_B2-1_실행화면_08_프롬프트수정_2.png
-      ├─ 코디세이_B2-1_실행화면_09_프롬프트삭제.png
-      ├─ 코디세이_B2-1_실행화면_10_조회수TOP.png
-      ├─ 코디세이_B2-1_실행화면_11_Markdown내보내기_1.png
-      ├─ 코디세이_B2-1_실행화면_11_Markdown내보내기_2.png
-      ├─ 코디세이_B2-1_실행화면_11_Markdown내보내기_3.png
-      ├─ 코디세이_B2-1_실행화면_gitclone및gitlog.png
-      ├─ 코디세이_B2-1_실행화면_gitcommit_GitHub확인.png
-      ├─ 코디세이_B2-1_실행화면_gitlog_전체화면.png
-      └─ 코디세이_B2-1_실행화면_gitlog_클로즈업.png
+      ├─ 코디세이_A1-1_실행화면_Hello출력.png
+      ├─ 코디세이_A1-1_실행화면_mainpy작성및Hello출력.png
+      ├─ 코디세이_A1-1_실행화면_README작성.png
+      ├─ 코디세이_A1-1_실행화면_gitignore설정.png
+      ├─ 코디세이_A1-1_실행화면_Python및Git버전확인.png
+      ├─ 코디세이_A1-1_실행화면_01_프롬프트추가_1.png
+      ├─ 코디세이_A1-1_실행화면_01_프롬프트추가_2.png
+      ├─ 코디세이_A1-1_실행화면_03_카테고리조회.png
+      ├─ 코디세이_A1-1_실행화면_04_프롬프트검색.png
+      ├─ 코디세이_A1-1_실행화면_05_상세보기_1.png
+      ├─ 코디세이_A1-1_실행화면_05_상세보기_2.png
+      ├─ 코디세이_A1-1_실행화면_06_즐겨찾기관리.png
+      ├─ 코디세이_A1-1_실행화면_07_즐겨찾기목록.png
+      ├─ 코디세이_A1-1_실행화면_08_프롬프트수정_1.png
+      ├─ 코디세이_A1-1_실행화면_08_프롬프트수정_2.png
+      ├─ 코디세이_A1-1_실행화면_09_프롬프트삭제.png
+      ├─ 코디세이_A1-1_실행화면_10_조회수TOP.png
+      ├─ 코디세이_A1-1_실행화면_11_Markdown내보내기_1.png
+      ├─ 코디세이_A1-1_실행화면_11_Markdown내보내기_2.png
+      ├─ 코디세이_A1-1_실행화면_11_Markdown내보내기_3.png
+      ├─ 코디세이_A1-1_실행화면_gitclone및gitlog.png
+      ├─ 코디세이_A1-1_실행화면_gitcommit_GitHub확인.png
+      ├─ 코디세이_A1-1_실행화면_gitlog_전체화면.png
+      └─ 코디세이_A1-1_실행화면_gitlog_클로즈업.png
 ```
 
 > 모든 실행 화면은 `assets/images`에서 통합 관리하며, README의 이미지 경로와 실제 파일명을 동일하게 유지합니다.
@@ -862,15 +862,15 @@ Python 3.10 이상인지 확인합니다. 이 프로젝트의 최종 확인 환�
 ## 1. 저장소 Clone
 
 ```bash
-git clone https://github.com/qjskffj-code/codyssey_B2-1.git
+git clone https://github.com/qjskffj-code/codyssey_A1-1.git
 ```
 
-클론 후 `codyssey_B2-1` 폴더와 `main.py`, `README.md`가 생성되었는지 확인합니다.
+클론 후 `codyssey_A1-1` 폴더와 `main.py`, `README.md`가 생성되었는지 확인합니다.
 
 ## 2. 프로젝트 폴더 이동
 
 ```bash
-cd codyssey_B2-1
+cd codyssey_A1-1
 ```
 
 ## 3. 프로그램 실행
@@ -891,9 +891,9 @@ python main.py
 | 저장 데이터 | [`prompts.json`](prompts.json) |
 | Markdown Export | [`exports/`](exports/) |
 | 프로젝트 설명 | [`README.md`](README.md) |
-| GitHub 저장소 | [codyssey_B2-1](https://github.com/qjskffj-code/codyssey_B2-1) |
+| GitHub 저장소 | [codyssey_A1-1](https://github.com/qjskffj-code/codyssey_A1-1) |
 | 실행 화면 및 제출 증빙 | [`assets/images/`](assets/images/) |
-| Git Graph | `assets/images/코디세이_B2-1_실행화면_gitlog_클로즈업.png` |
+| Git Graph | `assets/images/코디세이_A1-1_실행화면_gitlog_클로즈업.png` |
 
 ---
 
@@ -927,7 +927,7 @@ python main.py
 - AI 모델 API와 연결해 프로그램 안에서 직접 프롬프트 실행
 - 프롬프트 단위 관리에서 확장해 별도 **AKM 기반 지식관리 체계**와 연결
 
-> AKM 구조와 AI Agent 기반 지식 검색·실행·학습 기능은 현재 B2-1 구현 범위에 포함하지 않으며, 후속 프로젝트에서 별도로 다룰 예정입니다.
+> AKM 구조와 AI Agent 기반 지식 검색·실행·학습 기능은 현재 A1-1 구현 범위에 포함하지 않으며, 후속 프로젝트에서 별도로 다룰 예정입니다.
 
 ---
 
