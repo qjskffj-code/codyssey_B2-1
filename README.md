@@ -29,6 +29,7 @@
 
 - [주요 기능](#features)
 - [CLI 실행 예시](#cli-demo)
+- [실행 화면](#screenshots)
 - [데이터 저장](#data-persistence)
 - [markdown-내보내기](#markdown-export)
 - [git-workflow](#git-workflow)
@@ -370,6 +371,114 @@ Character sheet for the attached 3D robot character.
 
 ---
 
+# Screenshots
+
+실행 화면 이미지는 모두 [`assets/images/`](assets/images/)에 저장합니다.
+
+## 초기 구성 및 실행 확인
+
+### Hello 실행
+
+<p align="center">
+  <img src="assets/images/코디세이_B2-1_실행화면_Hello출력.png" alt="Python Hello 실행 결과" width="850">
+</p>
+
+### 프로젝트 기본 파일 작성
+
+<p align="center">
+  <img src="assets/images/코디세이_B2-1_실행화면_mainpy작성및Hello출력.png" alt="main.py 작성 및 Hello 실행" width="850">
+</p>
+
+<p align="center">
+  <img src="assets/images/코디세이_B2-1_실행화면_README작성.png" alt="README 작성" width="850">
+</p>
+
+<p align="center">
+  <img src="assets/images/코디세이_B2-1_실행화면_gitignore설정.png" alt="gitignore 설정" width="850">
+</p>
+
+## 기능별 실행 화면
+
+### 01. 프롬프트 추가
+
+<p align="center">
+  <img src="assets/images/코디세이_B2-1_실행화면_01_프롬프트추가_1.png" alt="프롬프트 추가 화면 1" width="850">
+</p>
+
+<p align="center">
+  <img src="assets/images/코디세이_B2-1_실행화면_01_프롬프트추가_2.png" alt="프롬프트 추가 화면 2" width="850">
+</p>
+
+### 03. 카테고리별 조회
+
+<p align="center">
+  <img src="assets/images/코디세이_B2-1_실행화면_03_카테고리조회.png" alt="카테고리별 프롬프트 조회" width="850">
+</p>
+
+### 04. 프롬프트 검색
+
+<p align="center">
+  <img src="assets/images/코디세이_B2-1_실행화면_04_프롬프트검색.png" alt="프롬프트 검색" width="850">
+</p>
+
+### 05. 상세보기
+
+<p align="center">
+  <img src="assets/images/코디세이_B2-1_실행화면_05_상세보기_1.png" alt="프롬프트 상세보기 화면 1" width="850">
+</p>
+
+<p align="center">
+  <img src="assets/images/코디세이_B2-1_실행화면_05_상세보기_2.png" alt="프롬프트 상세보기 화면 2" width="850">
+</p>
+
+### 06–07. 즐겨찾기 관리 및 목록
+
+<p align="center">
+  <img src="assets/images/코디세이_B2-1_실행화면_06_즐겨찾기관리.png" alt="즐겨찾기 관리" width="850">
+</p>
+
+<p align="center">
+  <img src="assets/images/코디세이_B2-1_실행화면_07_즐겨찾기목록.png" alt="즐겨찾기 목록" width="850">
+</p>
+
+### 08. 프롬프트 수정
+
+<p align="center">
+  <img src="assets/images/코디세이_B2-1_실행화면_08_프롬프트수정_1.png" alt="프롬프트 수정 화면 1" width="850">
+</p>
+
+<p align="center">
+  <img src="assets/images/코디세이_B2-1_실행화면_08_프롬프트수정_2.png" alt="프롬프트 수정 화면 2" width="850">
+</p>
+
+### 09. 프롬프트 삭제
+
+<p align="center">
+  <img src="assets/images/코디세이_B2-1_실행화면_09_프롬프트삭제.png" alt="프롬프트 삭제" width="850">
+</p>
+
+### 10. 조회수 TOP
+
+<p align="center">
+  <img src="assets/images/코디세이_B2-1_실행화면_10_조회수TOP.png" alt="조회수 TOP" width="850">
+</p>
+
+### 11. Markdown 내보내기
+
+<p align="center">
+  <img src="assets/images/코디세이_B2-1_실행화면_11_Markdown내보내기_1.png" alt="Markdown 내보내기 화면 1" width="850">
+</p>
+
+<p align="center">
+  <img src="assets/images/코디세이_B2-1_실행화면_11_Markdown내보내기_2.png" alt="Markdown 내보내기 화면 2" width="850">
+</p>
+
+<p align="center">
+  <img src="assets/images/코디세이_B2-1_실행화면_11_Markdown내보내기_3.png" alt="Markdown 내보내기 화면 3" width="850">
+</p>
+
+---
+
 # Data Persistence
 
 필수 요구사항에서는 프로그램 실행 중 데이터 유지까지만 필요하지만, 보너스 과제로 JSON 기반 영속화를 추가했습니다.
@@ -493,10 +602,22 @@ git merge
 
 > `git log --oneline --graph --all --decorate` 실행 결과
 
-<!-- 아래 경로에 최종 Git Graph 스크린샷을 추가하세요. -->
+<p align="center">
+  <img src="assets/images/코디세이_B2-1_실행화면_gitlog_클로즈업.png" alt="Git branch and merge graph close-up" width="850">
+</p>
+
+### Git 실행 증빙
 
 <p align="center">
-  <img src="assets/images/git-log-graph.png" alt="Git branch and merge graph" width="850">
+  <img src="assets/images/코디세이_B2-1_실행화면_gitclone및gitlog.png" alt="git clone 및 git log 실행 결과" width="850">
+</p>
+
+<p align="center">
+  <img src="assets/images/코디세이_B2-1_실행화면_gitcommit_GitHub확인.png" alt="GitHub 초기 커밋 확인" width="850">
+</p>
+
+<p align="center">
+  <img src="assets/images/코디세이_B2-1_실행화면_gitlog_전체화면.png" alt="Git log 전체 화면" width="850">
 </p>
 
 ---
@@ -515,16 +636,33 @@ B2-1/
 │  ├─ 이미지_생성.md
 │  └─ 자동화.md
 └─ assets/
-   ├─ images/
-   │  └─ git-log-graph.png
-   └─ evidence/
-      ├─ git-clone.png
-      ├─ git-commit.png
-      ├─ hello-output.png
-      └─ ...
+   └─ images/
+      ├─ 코디세이_B2-1_실행화면_Hello출력.png
+      ├─ 코디세이_B2-1_실행화면_mainpy작성및Hello출력.png
+      ├─ 코디세이_B2-1_실행화면_README작성.png
+      ├─ 코디세이_B2-1_실행화면_gitignore설정.png
+      ├─ 코디세이_B2-1_실행화면_01_프롬프트추가_1.png
+      ├─ 코디세이_B2-1_실행화면_01_프롬프트추가_2.png
+      ├─ 코디세이_B2-1_실행화면_03_카테고리조회.png
+      ├─ 코디세이_B2-1_실행화면_04_프롬프트검색.png
+      ├─ 코디세이_B2-1_실행화면_05_상세보기_1.png
+      ├─ 코디세이_B2-1_실행화면_05_상세보기_2.png
+      ├─ 코디세이_B2-1_실행화면_06_즐겨찾기관리.png
+      ├─ 코디세이_B2-1_실행화면_07_즐겨찾기목록.png
+      ├─ 코디세이_B2-1_실행화면_08_프롬프트수정_1.png
+      ├─ 코디세이_B2-1_실행화면_08_프롬프트수정_2.png
+      ├─ 코디세이_B2-1_실행화면_09_프롬프트삭제.png
+      ├─ 코디세이_B2-1_실행화면_10_조회수TOP.png
+      ├─ 코디세이_B2-1_실행화면_11_Markdown내보내기_1.png
+      ├─ 코디세이_B2-1_실행화면_11_Markdown내보내기_2.png
+      ├─ 코디세이_B2-1_실행화면_11_Markdown내보내기_3.png
+      ├─ 코디세이_B2-1_실행화면_gitclone및gitlog.png
+      ├─ 코디세이_B2-1_실행화면_gitcommit_GitHub확인.png
+      ├─ 코디세이_B2-1_실행화면_gitlog_전체화면.png
+      └─ 코디세이_B2-1_실행화면_gitlog_클로즈업.png
 ```
 
-> `assets/evidence`는 미션 제출에 필요한 개발환경·Git 실행 증빙을 보관하는 용도로 사용하며, README 본문에서는 핵심 실행 결과만 보여줍니다.
+> 모든 실행 화면은 `assets/images`에서 통합 관리하며, README의 이미지 경로와 실제 파일명을 동일하게 유지합니다.
 
 ---
 
@@ -653,8 +791,8 @@ python main.py
 | Markdown Export | [`exports/`](exports/) |
 | 프로젝트 설명 | [`README.md`](README.md) |
 | GitHub 저장소 | [codyssey_B2-1](https://github.com/qjskffj-code/codyssey_B2-1) |
-| 제출 증빙 | `assets/evidence/` |
-| Git Graph | `assets/images/git-log-graph.png` |
+| 실행 화면 및 제출 증빙 | [`assets/images/`](assets/images/) |
+| Git Graph | `assets/images/코디세이_B2-1_실행화면_gitlog_클로즈업.png` |
 
 ---
 
