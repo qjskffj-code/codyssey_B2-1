@@ -1,6 +1,20 @@
 import json
 import os
 
+CATEGORIES = [
+    "텍스트 생성",
+    "이미지 생성",
+    "영상 생성",
+    "페르소나",
+    "자동화",
+    "기타"
+]
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_FILE = os.path.join(BASE_DIR, "prompts.json")
+EXPORT_DIR = os.path.join(BASE_DIR, "exports")
+REQUIRED_PROMPT_KEYS = {"title", "content", "category", "favorite", "views"}
+
 DEFAULT_PROMPTS = [
     {
         "title": "AI 로봇 캐릭터 시트 생성",
@@ -175,26 +189,54 @@ AI의 응답이 다음 자동화 단계에서 바로 사용할 수 있도록 출
     }
 ]
 
-DATA_FILE = "prompts.json"
-
-
 def save_prompts():
+    """현재 프롬프트 목록을 UTF-8 JSON 파일에 저장한다."""
     with open(DATA_FILE, "w", encoding="utf-8") as file:
         json.dump(prompts, file, ensure_ascii=False, indent=4)
 
 
 def load_prompts():
+    """저장된 JSON을 검증해 불러오고, 문제가 있으면 기본 데이터를 사용한다."""
     try:
         with open(DATA_FILE, "r", encoding="utf-8") as file:
-            return json.load(file)
+            data = json.load(file)
+
+        if not isinstance(data, list):
+            raise ValueError("최상위 데이터가 리스트가 아닙니다.")
+
+        for prompt in data:
+            if not isinstance(prompt, dict) or not REQUIRED_PROMPT_KEYS.issubset(prompt):
+                raise ValueError("프롬프트 데이터 형식이 올바르지 않습니다.")
+
+        return data
     except FileNotFoundError:
+        return [prompt.copy() for prompt in DEFAULT_PROMPTS]
+    except (json.JSONDecodeError, OSError, TypeError, ValueError) as error:
+        print(f"prompts.json을 불러오지 못했습니다: {error}")
+        print("원본 파일은 유지하고 기본 프롬프트로 시작합니다.")
         return [prompt.copy() for prompt in DEFAULT_PROMPTS]
 
 
 prompts = load_prompts()
 
 
+def normalize_text(text):
+    """비교용 문자열의 연속 공백과 대소문자 차이를 정규화한다."""
+    return " ".join(text.split()).casefold()
+
+
+def has_duplicate_title(title, excluded_prompt=None):
+    """같은 제목의 프롬프트가 이미 있는지 확인한다."""
+    normalized_title = normalize_text(title)
+    return any(
+        prompt is not excluded_prompt
+        and normalize_text(prompt["title"]) == normalized_title
+        for prompt in prompts
+    )
+
+
 def show_menu():
+    """사용 가능한 메뉴를 번호와 함께 출력한다."""
     print("\n=== 나만의 프롬프트 관리 ===")
     print("1. 프롬프트 추가")
     print("2. 프롬프트 목록")
@@ -211,6 +253,7 @@ def show_menu():
 
 
 def add_prompt():
+    """입력값을 검증하고 제목 중복을 막아 새 프롬프트를 추가한다."""
     print("\n=== 프롬프트 추가 ===")
 
     while True:
@@ -220,10 +263,13 @@ def add_prompt():
             print("프롬프트 추가를 취소했습니다.")
             return
 
-        if title:
+        if title and not has_duplicate_title(title):
             break
 
-        print("제목은 비워둘 수 없습니다.")
+        if not title:
+            print("제목은 비워둘 수 없습니다.")
+        else:
+            print("같은 제목의 프롬프트가 이미 있습니다. 다른 제목을 입력해주세요.")
 
     while True:
         content = input("내용 (0: 취소): ").strip()
@@ -237,17 +283,8 @@ def add_prompt():
 
         print("내용은 비워둘 수 없습니다.")
 
-    categories = [
-        "텍스트 생성",
-        "이미지 생성",
-        "영상 생성",
-        "페르소나",
-        "자동화",
-        "기타"
-    ]
-
     print("\n카테고리 선택:")
-    for index, category in enumerate(categories, start=1):
+    for index, category in enumerate(CATEGORIES, start=1):
         print(f"{index}) {category}")
 
     print("0) 취소")
@@ -262,8 +299,8 @@ def add_prompt():
         if category_choice.isdigit():
             number = int(category_choice)
 
-            if 1 <= number <= len(categories):
-                category = categories[number - 1]
+            if 1 <= number <= len(CATEGORIES):
+                category = CATEGORIES[number - 1]
                 break
 
         print("올바른 카테고리 번호를 입력해주세요.")
@@ -282,6 +319,7 @@ def add_prompt():
     print(f"\n'{title}' 프롬프트가 추가되었습니다!")
 
 def show_list():
+    """전체 프롬프트의 번호, 카테고리, 제목과 즐겨찾기를 출력한다."""
     print("\n=== 프롬프트 목록 ===")
 
     if not prompts:
@@ -299,18 +337,10 @@ def show_list():
     print(f"\n총 {len(prompts)}개의 프롬프트")
 
 def show_by_category():
+    """선택한 카테고리에 속한 프롬프트만 출력한다."""
     print("\n=== 카테고리별 조회 ===")
 
-    categories = [
-        "텍스트 생성",
-        "이미지 생성",
-        "영상 생성",
-        "페르소나",
-        "자동화",
-        "기타"
-    ]
-
-    for index, category in enumerate(categories, start=1):
+    for index, category in enumerate(CATEGORIES, start=1):
         print(f"{index}) {category}")
 
     print("0) 취소")
@@ -325,8 +355,8 @@ def show_by_category():
         if choice.isdigit():
             number = int(choice)
 
-            if 1 <= number <= len(categories):
-                selected_category = categories[number - 1]
+            if 1 <= number <= len(CATEGORIES):
+                selected_category = CATEGORIES[number - 1]
                 break
 
         print("올바른 카테고리 번호를 입력해주세요.")
@@ -350,6 +380,7 @@ def show_by_category():
     print(f"\n총 {len(filtered_prompts)}개의 프롬프트")
 
 def search_prompt():
+    """제목과 내용에서 공백·대소문자를 정규화한 부분문자열을 검색한다."""
     print("\n=== 프롬프트 검색 ===")
 
     keyword = input("검색어 (0: 취소): ").strip()
@@ -362,12 +393,13 @@ def search_prompt():
         print("검색어를 입력해주세요.")
         return
 
+    normalized_keyword = normalize_text(keyword)
     results = []
 
     for prompt in prompts:
         if (
-            keyword.lower() in prompt["title"].lower()
-            or keyword.lower() in prompt["content"].lower()
+            normalized_keyword in normalize_text(prompt["title"])
+            or normalized_keyword in normalize_text(prompt["content"])
         ):
             results.append(prompt)
 
@@ -387,6 +419,7 @@ def search_prompt():
     print(f"\n{len(results)}개의 프롬프트를 찾았습니다.")
 
 def show_detail():
+    """선택한 프롬프트의 전체 내용을 보여주고 조회수를 증가시킨다."""
     print("\n=== 프롬프트 상세 보기 ===")
 
     if not prompts:
@@ -427,6 +460,7 @@ def show_detail():
     print("────────────────────────────")
 
 def toggle_favorite():
+    """선택한 프롬프트의 즐겨찾기 상태를 반전해 저장한다."""
     print("\n=== 즐겨찾기 관리 ===")
 
     if not prompts:
@@ -461,6 +495,7 @@ def toggle_favorite():
 
 
 def show_favorites():
+    """즐겨찾기로 지정된 프롬프트만 출력한다."""
     print("\n=== 즐겨찾기 목록 ===")
 
     favorite_prompts = []
@@ -479,6 +514,7 @@ def show_favorites():
     print(f"\n총 {len(favorite_prompts)}개의 즐겨찾기")
 
 def edit_prompt():
+    """선택한 프롬프트를 수정하되 다른 프롬프트와의 제목 중복을 막는다."""
     print("\n=== 프롬프트 수정 ===")
 
     if not prompts:
@@ -511,29 +547,28 @@ def edit_prompt():
     print("\n새 값을 입력하세요.")
     print("변경하지 않으려면 그냥 Enter를 누르세요.")
 
-    new_title = input("새 제목: ").strip()
+    while True:
+        new_title = input("새 제목: ").strip()
 
-    if new_title:
+        if not new_title:
+            break
+
+        if has_duplicate_title(new_title, excluded_prompt=prompt):
+            print("같은 제목의 프롬프트가 이미 있습니다. 다른 제목을 입력해주세요.")
+            continue
+
         prompt["title"] = new_title
+        break
 
     new_content = input("새 내용: ").strip()
 
     if new_content:
         prompt["content"] = new_content
 
-    categories = [
-        "텍스트 생성",
-        "이미지 생성",
-        "영상 생성",
-        "페르소나",
-        "자동화",
-        "기타"
-    ]
-
     print("\n카테고리 변경")
     print("0) 변경하지 않음")
 
-    for index, category in enumerate(categories, start=1):
+    for index, category in enumerate(CATEGORIES, start=1):
         print(f"{index}) {category}")
 
     while True:
@@ -545,8 +580,8 @@ def edit_prompt():
         if category_choice.isdigit():
             category_number = int(category_choice)
 
-            if 1 <= category_number <= len(categories):
-                prompt["category"] = categories[category_number - 1]
+            if 1 <= category_number <= len(CATEGORIES):
+                prompt["category"] = CATEGORIES[category_number - 1]
                 break
 
         print("올바른 카테고리 번호를 입력해주세요.")
@@ -555,6 +590,7 @@ def edit_prompt():
     print(f"\n'{prompt['title']}' 프롬프트가 수정되었습니다!")
     
 def delete_prompt():
+    """확인 절차를 거쳐 선택한 프롬프트를 삭제한다."""
     print("\n=== 프롬프트 삭제 ===")
 
     if not prompts:
@@ -598,6 +634,7 @@ def delete_prompt():
             print("y 또는 n을 입력해주세요.")
 
 def show_top_prompts():
+    """프롬프트를 조회수 내림차순으로 정렬해 출력한다."""
     print("\n=== 조회수 TOP ===")
 
     if not prompts:
@@ -617,27 +654,18 @@ def show_top_prompts():
         )
 
 def export_markdown():
+    """프롬프트를 카테고리별 Markdown 파일로 내보낸다."""
     print("\n=== Markdown 내보내기 ===")
 
     if not prompts:
         print("내보낼 프롬프트가 없습니다.")
         return
 
-    export_dir = "exports"
-    os.makedirs(export_dir, exist_ok=True)
-
-    categories = [
-        "텍스트 생성",
-        "이미지 생성",
-        "영상 생성",
-        "페르소나",
-        "자동화",
-        "기타"
-    ]
+    os.makedirs(EXPORT_DIR, exist_ok=True)
 
     exported_count = 0
 
-    for category in categories:
+    for category in CATEGORIES:
         category_prompts = [
             prompt for prompt in prompts
             if prompt["category"] == category
@@ -647,7 +675,7 @@ def export_markdown():
             continue
 
         file_name = category.replace(" ", "_") + ".md"
-        file_path = os.path.join(export_dir, file_name)
+        file_path = os.path.join(EXPORT_DIR, file_name)
 
         with open(file_path, "w", encoding="utf-8") as file:
             file.write(f"# {category} 프롬프트\n\n")
@@ -665,49 +693,56 @@ def export_markdown():
         exported_count += 1
 
     print(f"{exported_count}개의 Markdown 파일을 내보냈습니다.")
-    print(f"저장 위치: {export_dir}")
+    print(f"저장 위치: {EXPORT_DIR}")
 
-while True:
-    show_menu()
+def main():
+    """메뉴 입력을 반복 처리하고 0을 입력하면 종료한다."""
+    while True:
+        show_menu()
 
-    choice = input("선택: ").strip()
+        choice = input("선택: ").strip()
 
-    if choice == "0":
-        print("프로그램을 종료합니다.")
-        break
+        if choice == "0":
+            print("변경사항은 입력 즉시 prompts.json에 저장됩니다.")
+            print("프로그램을 종료합니다.")
+            break
 
-    elif choice == "1":
-        add_prompt()
+        elif choice == "1":
+            add_prompt()
 
-    elif choice == "2":
-        show_list()
+        elif choice == "2":
+            show_list()
 
-    elif choice == "3":
-        show_by_category()
+        elif choice == "3":
+            show_by_category()
 
-    elif choice == "4":
-        search_prompt()
+        elif choice == "4":
+            search_prompt()
 
-    elif choice == "5":
-        show_detail()
+        elif choice == "5":
+            show_detail()
 
-    elif choice == "6":
-        toggle_favorite()
+        elif choice == "6":
+            toggle_favorite()
 
-    elif choice == "7":
-        show_favorites()
+        elif choice == "7":
+            show_favorites()
 
-    elif choice == "8":
-        edit_prompt()
+        elif choice == "8":
+            edit_prompt()
 
-    elif choice == "9":
-        delete_prompt()
+        elif choice == "9":
+            delete_prompt()
 
-    elif choice == "10":
-        show_top_prompts()
+        elif choice == "10":
+            show_top_prompts()
 
-    elif choice == "11":
-        export_markdown()
+        elif choice == "11":
+            export_markdown()
 
-    else:
-        print("올바른 메뉴 번호를 입력해주세요.")
+        else:
+            print("올바른 메뉴 번호를 입력해주세요.")
+
+
+if __name__ == "__main__":
+    main()

@@ -83,7 +83,7 @@
 
 | 영역 | 사용 기술 |
 |---|---|
-| Language | Python 3.10+ |
+| Language | Python 3.14.5 (요구사항: Python 3.10+) |
 | Data Structure | List, Dictionary |
 | Persistence | JSON |
 | Export | Markdown |
@@ -91,6 +91,42 @@
 | Remote Repository | GitHub |
 | Editor | Visual Studio Code |
 | Interface | CLI / Terminal |
+
+## 개발 환경 버전 확인
+
+기본 터미널의 Python은 3.11.15이며, 프로젝트 구현과 최종 확인에는 VS Code에서 선택한 Python 3.14.5 인터프리터를 사용했습니다. Git 버전은 2.38.1입니다.
+
+```powershell
+python -V
+```
+
+```text
+Python 3.11.15
+```
+
+프로젝트에서 선택한 Python 인터프리터도 별도로 확인했습니다.
+
+```powershell
+& "C:\Users\go991\AppData\Roaming\uv\python\cpython-3.14.5-windows-x86_64-none\python.exe" -V
+```
+
+```text
+Python 3.14.5
+```
+
+```powershell
+git --version
+```
+
+```text
+git version 2.38.1.windows.1
+```
+
+<p align="center">
+  <img src="assets/images/코디세이_B2-1_실행화면_Python및Git버전확인.png" alt="Python 3.11.15와 3.14.5 및 Git 2.38.1 버전 확인" width="850">
+</p>
+
+> Windows에 Python이 여러 버전 설치되어 있다면 VS Code의 `Python: Select Interpreter`에서 Python 3.10 이상을 선택한 뒤 버전을 다시 확인합니다.
 
 ---
 
@@ -133,6 +169,14 @@ prompts = [
 | `favorite` | 즐겨찾기 여부 |
 | `views` | 상세보기 조회수 |
 
+## List + Dictionary 선택 이유
+
+- `list`는 여러 프롬프트의 입력 순서를 유지하며 순차적으로 추가·조회하기 쉽습니다.
+- `dict`는 `title`, `content`, `category`, `favorite`, `views`처럼 서로 다른 속성을 이름으로 명확하게 관리할 수 있습니다.
+- 표준 라이브러리의 JSON 구조와 바로 대응되므로 별도의 변환 계층 없이 저장하고 불러올 수 있습니다.
+
+이 구조는 구현이 단순하고 소규모 개인 데이터에 적합하지만, 제목 검색과 중복 확인에는 전체 목록을 순회하므로 시간 복잡도가 `O(n)`입니다. 데이터가 많아지면 제목이나 ID를 키로 사용하는 딕셔너리 인덱스 또는 데이터베이스를 추가하는 편이 효율적입니다. 중간 위치 삭제도 리스트 재배치 때문에 `O(n)`이지만, 현재 프로젝트 규모에서는 단순성과 학습 효과를 우선했습니다.
+
 ## 기본 카테고리
 
 - 텍스트 생성
@@ -165,6 +209,8 @@ prompts = [
 - 입력 중 `0`을 이용한 취소
 - 신규 프롬프트의 즐겨찾기 기본값 `False`
 - 조회수 기본값 `0`
+- 공백과 대소문자를 정규화한 제목 중복 검사
+- 같은 제목이 있으면 덮어쓰지 않고 다른 제목을 다시 입력
 
 ```text
 === 프롬프트 추가 ===
@@ -237,7 +283,7 @@ prompts = [
 
 입력한 키워드가 프롬프트의 **제목 또는 내용**에 포함되어 있는지 확인합니다.
 
-영문 검색에서는 `lower()`를 사용해 대소문자 차이를 줄였습니다.
+검색어와 데이터에는 `casefold()`를 적용해 영문 대소문자 차이를 줄이고, 연속된 공백은 하나로 정규화합니다. 특수문자는 제거하지 않고 입력한 문자 그대로 부분문자열을 비교하며, 정규식 검색은 현재 지원하지 않습니다.
 
 ```text
 === 프롬프트 검색 ===
@@ -299,11 +345,13 @@ Character sheet for the attached 3D robot character.
 
 ---
 
-## 7. 프롬프트 수정
+## 8. 프롬프트 수정
 
 기존 프롬프트의 제목, 내용, 카테고리를 변경할 수 있습니다.
 
 변경하지 않을 값은 Enter를 눌러 기존 값을 유지합니다.
+
+새 제목이 다른 프롬프트와 중복되면 수정하지 않고 다른 제목을 다시 입력하도록 안내합니다.
 
 ```text
 현재 정보
@@ -319,7 +367,7 @@ Character sheet for the attached 3D robot character.
 
 ---
 
-## 8. 프롬프트 삭제
+## 9. 프롬프트 삭제
 
 삭제할 프롬프트를 선택한 뒤 `y / n` 확인 절차를 거쳐 삭제합니다.
 
@@ -332,7 +380,7 @@ Character sheet for the attached 3D robot character.
 
 ---
 
-## 9. 조회수 TOP
+## 10. 조회수 TOP
 
 프롬프트의 `views` 값을 기준으로 높은 순서대로 정렬합니다.
 
@@ -368,6 +416,19 @@ Character sheet for the attached 3D robot character.
 각 기능 수행 후 다시 메인 메뉴로 돌아가며, `0`을 입력하면 프로그램을 종료합니다.
 
 잘못된 메뉴 번호를 입력하면 프로그램을 종료하지 않고 다시 입력할 수 있도록 처리했습니다.
+
+프롬프트 추가 예시 흐름:
+
+```text
+선택: 1
+제목 (0: 취소): 회의록 정리 도우미
+내용 (0: 취소): 회의 내용을 핵심 항목으로 정리해줘.
+선택: 1
+
+'회의록 정리 도우미' 프롬프트가 추가되었습니다!
+```
+
+추가·수정·삭제·즐겨찾기·상세보기로 변경된 데이터는 작업 직후 `prompts.json`에 저장됩니다. 따라서 `0`으로 종료할 때 별도의 저장 확인은 필요하지 않습니다.
 
 ---
 
@@ -408,6 +469,8 @@ Character sheet for the attached 3D robot character.
 <p align="center">
   <img src="assets/images/코디세이_B2-1_실행화면_01_프롬프트추가_2.png" alt="프롬프트 추가 화면 2" width="850">
 </p>
+
+> 02. 프롬프트 목록은 프롬프트 추가 후 목록 반영 화면인 `01_프롬프트추가_2`에서 함께 확인할 수 있습니다.
 
 ### 03. 카테고리별 조회
 
@@ -499,6 +562,8 @@ flowchart LR
 
 데이터 변경이 발생하면 JSON 파일에 다시 저장합니다.
 
+`prompts.json`이 손상되었거나 필수 필드가 누락된 경우 원본 파일을 덮어쓰지 않고 경고를 출력한 뒤 기본 프롬프트로 실행합니다. 저장 데이터는 Git 커밋을 백업으로 사용하며, 손상 시 마지막 정상 커밋의 `prompts.json`을 복원합니다. 향후 데이터 구조가 바뀌면 최상위에 포맷 버전을 추가하는 방식을 고려합니다.
+
 ```json
 [
     {
@@ -527,7 +592,6 @@ flowchart LR
 
 ```text
 exports/
-├─ 기타.md
 ├─ 영상_생성.md
 ├─ 이미지_생성.md
 └─ 자동화.md
@@ -576,6 +640,8 @@ flowchart LR
 
 `프롬프트 목록` 기능은 별도 브랜치에서 작업했습니다.
 
+독립적으로 구현·검증할 수 있는 기능은 `feature/<기능명>` 브랜치로 분리합니다. 입력 검증과 정상 동작을 확인하고 관련 커밋이 정리되면 `main`에 병합합니다. 팀 작업이라면 PR 검토가 완료된 뒤 병합한다는 기준을 사용합니다.
+
 ```text
 main
   │
@@ -598,9 +664,29 @@ git checkout
 git merge
 ```
 
+커밋 메시지는 변경 목적이 드러나도록 다음 규칙을 사용했습니다.
+
+```text
+feat: 새 기능 구현
+fix: 오류 수정
+refactor: 기능 변경 없는 구조 개선
+docs: README와 문서 수정
+chore: 설정 및 기타 작업
+```
+
 ### Git Log
 
 > `git log --oneline --graph --all --decorate` 실행 결과
+
+```text
+* 242de50 (HEAD -> main, origin/main) Update README.md
+* a8d7fd3 feat: export prompts to markdown
+* ed50d3b feat: persist prompts with JSON
+* c7fda57 feat: implement view count ranking
+* 339ad29 feat: implement prompt deletion
+* ee2d612 feat: implement prompt editing
+* 1d0c56a feat: implement favorites
+```
 
 <p align="center">
   <img src="assets/images/코디세이_B2-1_실행화면_gitlog_클로즈업.png" alt="Git branch and merge graph close-up" width="850">
@@ -631,7 +717,6 @@ B2-1/
 ├─ README.md
 ├─ .gitignore
 ├─ exports/
-│  ├─ 기타.md
 │  ├─ 영상_생성.md
 │  ├─ 이미지_생성.md
 │  └─ 자동화.md
@@ -641,6 +726,7 @@ B2-1/
       ├─ 코디세이_B2-1_실행화면_mainpy작성및Hello출력.png
       ├─ 코디세이_B2-1_실행화면_README작성.png
       ├─ 코디세이_B2-1_실행화면_gitignore설정.png
+      ├─ 코디세이_B2-1_실행화면_Python및Git버전확인.png
       ├─ 코디세이_B2-1_실행화면_01_프롬프트추가_1.png
       ├─ 코디세이_B2-1_실행화면_01_프롬프트추가_2.png
       ├─ 코디세이_B2-1_실행화면_03_카테고리조회.png
@@ -689,6 +775,8 @@ B2-1/
 | T-15 | 상세보기 횟수 차등 생성 | 조회수 기준 내림차순 정렬 | ✅ |
 | T-16 | 프로그램 종료 후 재실행 | JSON 데이터 유지 | ✅ |
 | T-17 | Markdown 내보내기 | 카테고리별 `.md` 파일 생성 | ✅ |
+| T-18 | 기존 제목과 같은 제목 추가·수정 | 중복 안내 후 다른 제목 재입력 | ✅ |
+| T-19 | 손상된 JSON 파일로 실행 | 경고 출력 후 기본 데이터로 실행 | ✅ |
 
 ---
 
@@ -700,7 +788,7 @@ B2-1/
 |---|---|:---:|
 | VSCode 사용 | 프로젝트 작성·실행 환경 | ✅ |
 | Python Extension | VSCode Python 실행 환경 구성 | ✅ |
-| Python 3.10 이상 | 버전 확인 완료 | ✅ |
+| Python 3.10 이상 | Python 3.14.5 확인 완료 | ✅ |
 | `print("Hello")` 실행 | 초기 개발환경 테스트 완료 | ✅ |
 | Git 버전 확인 | 터미널에서 확인 | ✅ |
 | Git 사용자 이름 설정 | `user.name` 확인 | ✅ |
@@ -743,6 +831,8 @@ B2-1/
 | 즐겨찾기 관리 | 추가·해제 | ✅ |
 | 즐겨찾기 목록 | 즐겨찾기만 조회 | ✅ |
 | 기능별 함수 분리 | 메뉴·CRUD·검색 등 함수 구성 | ✅ |
+| 중복 제목 처리 | 덮어쓰지 않고 다른 제목 재입력 | ✅ |
+| 카테고리 충돌 처리 | 고정된 `CATEGORIES` 목록에서만 선택 | ✅ |
 
 ## Bonus
 
@@ -760,11 +850,22 @@ B2-1/
 
 # How to Run
 
+## 0. Python 및 Git 버전 확인
+
+```bash
+python -V
+git --version
+```
+
+Python 3.10 이상인지 확인합니다. 이 프로젝트의 최종 확인 환경은 Python 3.14.5와 Git 2.38.1입니다.
+
 ## 1. 저장소 Clone
 
 ```bash
 git clone https://github.com/qjskffj-code/codyssey_B2-1.git
 ```
+
+클론 후 `codyssey_B2-1` 폴더와 `main.py`, `README.md`가 생성되었는지 확인합니다.
 
 ## 2. 프로젝트 폴더 이동
 
